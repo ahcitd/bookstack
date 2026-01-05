@@ -2,7 +2,6 @@ services:
   bookstack:
     image: 'lscr.io/linuxserver/bookstack:latest'
     environment:
-      - SERVICE_URL_BOOKSTACK_80
       - 'APP_URL=${SERVICE_URL_BOOKSTACK}'
       - 'APP_KEY=${SERVICE_PASSWORD_APPKEY}'
       - PUID=1000
