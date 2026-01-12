@@ -23,6 +23,15 @@ services:
       - 'MAIL_PASSWORD=${MAIL_PASSWORD}'
       - 'MAIL_FROM=${MAIL_FROM}'
       - 'MAIL_FROM_NAME=${MAIL_FROM_NAME:-BookStack}'
+      - AUTH_METHOD=oidc
+      - AUTH_AUTO_INITIATE=false # Set this to "true" to automatically redirect the user to authentik.
+      - OIDC_NAME=authentik # The display name shown on the login page.
+      - OIDC_DISPLAY_NAME_CLAIMS=name # Claim(s) for the user's display name. Can have multiple attributes listed, separated with a '|' in which case those values will be joined with a space.
+      - OIDC_CLIENT_ID=<Client ID from authentik>
+      - OIDC_CLIENT_SECRET=<Client Secret from authentik>
+      - OIDC_ISSUER=https://authentik.company/application/o/<application_slug>/
+      - OIDC_ISSUER_DISCOVER=true
+      - OIDC_END_SESSION_ENDPOINT=true
     volumes:
       - 'bookstack-data:/config'
     healthcheck:
